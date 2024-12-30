@@ -41,7 +41,7 @@ COPY --from=build /app /app
 
 # Google fonts
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y wget ca-certificates
+    apt-get install --no-install-recommends -y wget ca-certificates fontconfig
 
 RUN wget https://github.com/google/fonts/archive/main.tar.gz -O gf.tar.gz
 RUN tar -xf gf.tar.gz
