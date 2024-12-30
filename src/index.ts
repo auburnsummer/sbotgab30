@@ -6,7 +6,7 @@ import { fileURLToPath } from "url";
 import { songDataRoute } from "./songDataRoute.js";
 
 const app: Express = express();
-const port = process.env.PORT || 3000;
+const port = 3000;
 
 // app.use(express.static('../assets'))
 
@@ -23,6 +23,6 @@ app.get("/img", imageRoute);
 
 app.get("/songData", songDataRoute);
 
-app.listen(port, () => {
+app.listen(port, "0.0.0.0", 511, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
 });
