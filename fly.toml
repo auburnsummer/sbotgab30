@@ -4,7 +4,7 @@
 #
 
 app = 'sbotgab30'
-primary_region = 'syd'
+primary_region = 'iad'
 
 [build]
 
