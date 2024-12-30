@@ -1,6 +1,6 @@
-import Konva from "konva";
 import { Image } from "konva/lib/shapes/Image.js";
 import { ParsedQs } from "qs";
+import { Konva } from "./konva.js";
 
 export function loadImage(imageURL: string): Promise<Image> {
     return new Promise((resolve, reject) => {

@@ -1,7 +1,9 @@
-import Konva from "konva";
 import { ClearState, loadImage, loadSongJacket } from "./utils.js";
 
 import { getSongData, Song } from "./chartData.js";
+import { Image } from "konva/lib/shapes/Image.js";
+import { Konva } from "./konva.js";
+
 
 const WIDTH = 1000;
 const HEIGHT = 1500;
@@ -12,7 +14,7 @@ const BG_IMAGE_URL = 'http://localhost:3000/backgrounds/hug.png';
 
 const FONT = 'Itim';
 
-let bgImage: Konva.Image | null;
+let bgImage: Image | null;
 
 const getBgImage = async () => {
     if (!bgImage) {
