@@ -172,10 +172,6 @@ const NOT_AP_SCORE_REDUCTION = 0.5;
 
 export async function drawImage(clearData: Record<string, ClearState>) {
     const songs = await getSongData();
-    const stage = new Konva.Stage({
-        width: WIDTH,
-        height: HEIGHT
-    });
 
     const final: Song[] = [];
     Object.entries(clearData).forEach(([uid, clearState]) => {
@@ -190,6 +186,14 @@ export async function drawImage(clearData: Record<string, ClearState>) {
         }
     });
 
+    const top30Songs = final.slice(0, 30);
+
+    const ranking = top30Songs.reduce((acc, song) => acc + song.diffConstant, 0) / 30;
+
+    const stage = new Konva.Stage({
+        width: WIDTH,
+        height: HEIGHT
+    });
     const bgLayer = new Konva.Layer({ id: 'bgLayer', listening: false });
 
     stage.add(bgLayer);
@@ -231,14 +235,13 @@ export async function drawImage(clearData: Record<string, ClearState>) {
         width: WIDTH - 5,
         height: HEADER_HEIGHT,
         align: 'right',
-        text: `Ranking: 23.43`,
+        text: `Ranking: ${ranking.toFixed(2)}`,
         fontSize: 24,
         fontFamily: FONT,
         fill: 'black',
     });
     mainLayer.add(topBar, text, text2);
 
-    const top30Songs = final.slice(0, 30);
 
     const imageDrawPromises: Promise<void>[] = [];
     for (let idx = 0; idx < top30Songs.length; idx++) {
