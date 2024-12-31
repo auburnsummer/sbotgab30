@@ -173,18 +173,21 @@ const NOT_AP_SCORE_REDUCTION = 0.5;
 export async function drawImage(clearData: Record<string, ClearState>) {
     const songs = await getSongData();
 
-    const final: Song[] = [];
+    const unsortedSongList: Song[] = [];
+
     Object.entries(clearData).forEach(([uid, clearState]) => {
         if (clearState === 'fc') {
-            final.push({
+            unsortedSongList.push({
                 ...songs[uid],
                 diffConstant: songs[uid].diffConstant - NOT_AP_SCORE_REDUCTION,
             });
         }
         if (clearState === 'ap') {
-            final.push(songs[uid]);
+            unsortedSongList.push(songs[uid]);
         }
     });
+
+    const final = unsortedSongList.sort((a, b) => b.diffConstant - a.diffConstant);
 
     const top30Songs = final.slice(0, 30);
 
