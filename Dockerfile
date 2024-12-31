@@ -51,5 +51,6 @@ RUN rm -f gf.tar.gz
 RUN fc-cache -f && rm -rf /var/cache/*
 
 # Start the server by default, this can be overwritten at runtime
+ENV NODE_OPTIONS="--max-old-space-size=409"
 EXPOSE 3000
 CMD [ "npm", "run", "start" ]
