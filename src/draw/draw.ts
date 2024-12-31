@@ -168,7 +168,7 @@ const fcNormalShape = new Konva.Line({
     ...normalFill
 });
 
-const NOT_AP_SCORE_REDUCTION = 0.5;
+const NOT_AP_SCORE_REDUCTION = 1;
 
 export async function drawImage(clearData: Record<string, ClearState>) {
     const songs = await getSongData();
