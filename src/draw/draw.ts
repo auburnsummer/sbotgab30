@@ -176,6 +176,10 @@ export async function drawImage(clearData: Record<string, ClearState>) {
     const unsortedSongList: Song[] = [];
 
     Object.entries(clearData).forEach(([uid, clearState]) => {
+        if (!Object.keys(songs).includes(uid)) {
+            console.warn('Song not found in data', uid);
+            return;
+        }
         if (clearState === 'fc') {
             unsortedSongList.push({
                 ...songs[uid],
